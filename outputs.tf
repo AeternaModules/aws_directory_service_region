@@ -28,6 +28,6 @@ output "directory_service_regions_tags_all" {
 }
 output "directory_service_regions_vpc_settings" {
   description = "Map of vpc_settings values across all directory_service_regions, keyed the same as var.directory_service_regions"
-  value       = { for k, v in aws_directory_service_region.directory_service_regions : k => v.vpc_settings if v.vpc_settings != null && length(v.vpc_settings) > 0 }
+  value       = { for k, v in aws_directory_service_region.directory_service_regions : k => one(v.vpc_settings) if v.vpc_settings != null && length(v.vpc_settings) > 0 }
 }
 
